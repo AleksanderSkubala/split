@@ -1,0 +1,14 @@
+PREAMBLE
+
+1. Structure:
+    #container>.page>el,table>row,row...
+    OR
+    #container>.page>el,div>el,el...
+
+2. App purpose:
+    App has to make new .page with rows/elements that haven't any child(is in the bottom of the hierarchy) and have to be splited.
+
+TODO
+
+[*]  1. Create simple structure
+[*]  2. Create JS that will callback 'the lowest' child. (if it's table the lowest is tr, else this is el)
