@@ -12,3 +12,9 @@ TODO
 
 [*]  1. Create simple structure
 [*]  2. Create JS that will callback 'the lowest' child. (if it's table the lowest is tr, else this is el)
+
+JS
+
+[*]  3. check is paged overcrowded
+[*]  3. check all pages in loop
+[ ]  4. do list with overcrowded elements

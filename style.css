@@ -16,7 +16,7 @@ body, html {
 
 .page {
     width: 794px;
-    height: 1123px;
+    min-height: 1123px;
     border-bottom: 0.5px solid black;
 }
 
