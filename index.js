@@ -16,17 +16,17 @@ if(pages.length > 0) {
             lastList = child.childNodes[1].childNodes;
             finalChild = lastList[lastList.length - 2]
         } else {
+            lastList = child.childNodes;
             while (isEnd === false) {
-                lastList = child.childNodes;
                 testChild = lastList[lastList.length -2];
-                if(testChild.childNodes === null) {
+                if(testChild.childNodes.length === 1) {
                     isEnd =  true;
-                    finalChild = testChild
+                    finalChild = testChild;
                 } else {
                     lastList = testChild.childNodes;
                 }
             }
         }
-        console.log(testChild);
+        console.log('testChild:', testChild, 'child:', child, 'lastList:', lastList, 'finalChild:', finalChild);
     }
 }
