@@ -11,6 +11,7 @@ var fragment = dc.createDocumentFragment();
 
 var entry;
 var el;
+var newPage;
 
 var pages = dc.getElementsByClassName('page');
 
@@ -67,6 +68,16 @@ if(pages.length > 0) {
                 }
             }
             console.log(fragment);
+            if(pages[i+1]) {
+                pages[i+1].appendChild(fragment);
+            } else {
+                newPage = dc.createElement('div');
+                newPage.className = 'page';
+                newPage.appendChild(fragment);
+                console.log(newPage);
+                pages[0].parentNode.appendChild(newPage);
+                pages = dc.getElementsByClassName('page');
+            }
         }
     }
 }
