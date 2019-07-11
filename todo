@@ -18,4 +18,6 @@ JS
 [*]  3. check is paged overcrowded
 [*]  3. check all pages in loop
 [*]  4. do list with overcrowded elements
-[ ]  5. Append list to other page
+[*]  5. Append list to other page
+[*]  6. back if rest isn't equal zero
+[/]  7. don't repeat containers

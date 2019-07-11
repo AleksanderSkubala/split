@@ -4,6 +4,8 @@ var children;
 var lastList;
 var child;
 var testChild;
+var container = null;
+var lastContainer = null;
 var finalChild;
 var isEnd = false;
 var rest;
@@ -12,6 +14,7 @@ var fragment = dc.createDocumentFragment();
 var entry;
 var el;
 var newPage;
+var i3;
 
 var pages = dc.getElementsByClassName('page');
 
@@ -58,16 +61,24 @@ if(pages.length > 0) {
                         }
                         break;
                 }
-                fragment.appendChild(finalChild);
+                container = finalChild.parentNode.cloneNode(false);
+                console.log(container);
+                if(lastContainer === container) {
+                    lastContainer.appendChild(finalChild);
+                    fragment.appendChild(lastContainer);
+                } else {
+                    lastContainer = container;
+                    container.appendChild(finalChild);
+                    fragment.appendChild(container);
+                }
                 //appending el to other fragment, if rest is larger than finalChild.clientheight section with switch is repeating
                 if(finalChild.nodeName !== '#text') {
                     if(rest > finalChild.clientHeight) {
-                        child = children[children.length - 2];
+                        child = children[children.length - 4];
                         rest -= finalChild.clientHeight;
                     } else break;
                 }
             }
-            console.log(fragment);
             if(pages[i+1]) {
                 pages[i+1].appendChild(fragment);
             } else {
@@ -76,7 +87,7 @@ if(pages.length > 0) {
                 newPage.appendChild(fragment);
                 console.log(newPage);
                 pages[0].parentNode.appendChild(newPage);
-                pages = dc.getElementsByClassName('page');
+                children = pages[i].childNodes;
             }
         }
     }
