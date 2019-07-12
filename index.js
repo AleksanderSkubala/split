@@ -5,7 +5,7 @@ var lastList;
 var child;
 var testChild;
 var container = null;
-var lastContainer = null;
+var lastContainer = dc.createElement('div');
 var finalChild;
 var isEnd = false;
 var rest;
@@ -42,10 +42,12 @@ if(pages.length > 0) {
                     case "TABLE":
                         lastList = child.childNodes[1].childNodes;
                         finalChild = lastList[lastList.length - 2];
+                        container = finalChild.parentNode.parentNode.cloneNode(false);
                         break;
 
                     case "list":
                         finalChild = child;
+                        container = finalChild.parentNode.cloneNode(false);
                         break;
 
                     default:
@@ -59,17 +61,17 @@ if(pages.length > 0) {
                                 lastList = testChild.childNodes;
                             }
                         }
+                        container = finalChild.parentNode.cloneNode(false);
                         break;
                 }
-                container = finalChild.parentNode.cloneNode(false);
-                console.log(container);
-                if(lastContainer === container) {
+                if(lastContainer.cloneNode(false).isEqualNode(container)) {
                     lastContainer.appendChild(finalChild);
                     fragment.appendChild(lastContainer);
+                    console.log(lastContainer.cloneNode(false));
                 } else {
-                    lastContainer = container;
                     container.appendChild(finalChild);
                     fragment.appendChild(container);
+                    lastContainer = container;
                 }
                 //appending el to other fragment, if rest is larger than finalChild.clientheight section with switch is repeating
                 if(finalChild.nodeName !== '#text') {
