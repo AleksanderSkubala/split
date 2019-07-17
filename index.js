@@ -4,6 +4,7 @@ var children;
 var lastList;
 var child;
 var testChild;
+var isOne;
 var container = null;
 var lastContainer = dc.createElement('div');
 var finalChild;
@@ -37,17 +38,21 @@ if(pages.length > 0) {
             }
 
             child = children[children.length - 2];
-            for (let i2 = 1; i2 < children.length; i2++) {
+            for (let i2 = 0; i2 < children.length; i2++) {
                 switch (child.nodeName) {
                     case "TABLE":
                         lastList = child.childNodes[1].childNodes;
+                        isOne = lastList.length === 0 ? true : false
                         finalChild = lastList[lastList.length - 2];
                         container = finalChild.parentNode.parentNode.cloneNode(false);
                         break;
 
-                    case "list":
-                        finalChild = child;
-                        container = finalChild.parentNode.cloneNode(false);
+                    case "UL":
+                    case "LI":
+                        console.log(child.childNodes);
+                        finalChild = child.childNodes[child.childNodes.length - 2];
+                        isOne = child.parentNode.childNodes.length === 0 ? true : false
+                        container = finalChild.cloneNode(false);
                         break;
 
                     default:
@@ -59,16 +64,17 @@ if(pages.length > 0) {
                                 finalChild = testChild;
                             } else {
                                 lastList = testChild.childNodes;
+                                isOne = lastList.length === 0 ? true : false
                             }
                         }
                         container = finalChild.parentNode.cloneNode(false);
                         break;
-                }
-                if(lastContainer.cloneNode(false).isEqualNode(container)) {
+                    }
+                console.log(finalChild);
+                if(lastContainer.cloneNode(false).isEqualNode(container) && finalChild.nodeName !== '#text') {
                     lastContainer.appendChild(finalChild);
                     fragment.appendChild(lastContainer);
-                    console.log(lastContainer.cloneNode(false));
-                } else {
+                } else if(finalChild.nodeName !== '#text') {
                     container.appendChild(finalChild);
                     fragment.appendChild(container);
                     lastContainer = container;
@@ -76,7 +82,7 @@ if(pages.length > 0) {
                 //appending el to other fragment, if rest is larger than finalChild.clientheight section with switch is repeating
                 if(finalChild.nodeName !== '#text') {
                     if(rest > finalChild.clientHeight) {
-                        child = children[children.length - 4];
+                        child = children[children.length - (i2*2 + 2)];//first it's going back to -2, next -4 ...
                         rest -= finalChild.clientHeight;
                     } else break;
                 }
