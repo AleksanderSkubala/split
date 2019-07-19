@@ -19,8 +19,8 @@ for (let index = 0; index < pages.length; index++) {
         for (let i = 1; i < children.length; i++) {
             child = children[children.length - i]; //elements are checking from end
             container = child.cloneNode(false);
-            children2 = child.childNodes;
-            console.log(children2[0]);
+            children2 = concat(child);
+            console.log(children2);
             for (let i2 = 1; i2 < children2.length; i2++) {
                 child2 = children2[children2.length - i2];
                 if(rest <= child2.clientHeight) {
