@@ -41,6 +41,7 @@ var split = function() {
                 fragment.appendChild(finalChild);
                 if(rest <= child2.clientHeight) break;
             }
+            reverse(fragment);
             if(pages[index+1]) {
                 pages[i+1].appendChild(fragment);
             } else {
