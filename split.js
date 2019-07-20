@@ -28,21 +28,18 @@ var split = function() {
                 container = child.cloneNode(false);
                 children2 = concat(child);
                 console.log(children2);
-                for (let i2 = 1; i2 < children2.length; i2++) {
-                    console.log(i2);
+                for (let i2 = 1; i2 <= children2.length; i2++) {
                     child2 = children2[children2.length - i2];
-                    if(rest <= child2.clientHeight) {
-                        container.appendChild(child2);
-                        rest -= child2.clientHeight;
-                        finalChild = container;
-                        break;
-                    } else {
-                        rest -= child2.clientHeight;
-                        container.appendChild(child2); //the order is the most important
-                    }
-                    // finalChild = container;
+                    console.log(child2);
+
+                    rest -= child2.clientHeight;
+                    container.appendChild(child2); //the order is the most important
+                    finalChild = container;
+
+                    if(rest <= child2.clientHeight) break;
                 }
                 fragment.appendChild(finalChild);
+                if(rest <= child2.clientHeight) break;
             }
             if(pages[index+1]) {
                 pages[i+1].appendChild(fragment);
