@@ -1,41 +1,59 @@
-clean(document.body);
-var pages = document.querySelectorAll('.page');
+var split = function() {
+    clean(document.body);
 
-var page;
-var rest;
-var children;
-var children2;
-var child;
-var child2;
-var finalChild;
-var container;
-var fragment = document.createDocumentFragment();
+    var pages = document.querySelectorAll('.page');
+    if(!pages) {
+        console.error('There is no pages!');
+        return;
+    }
 
-for (let index = 0; index < pages.length; index++) {
-    page = pages[index];
-    if(page.clientHeight > 1123) {
-        rest = page.clientHeight - 1123;
-        children = page.childNodes;
-        for (let i = 1; i < children.length; i++) {
-            child = children[children.length - i]; //elements are checking from end
-            container = child.cloneNode(false);
-            children2 = concat(child);
-            console.log(children2);
-            for (let i2 = 1; i2 < children2.length; i2++) {
-                child2 = children2[children2.length - i2];
-                if(rest <= child2.clientHeight) {
-                    container.appendChild(child2);
-                    rest -= child2.clientHeight;
-                    finalChild = container;
-                    break;
-                } else {
-                    container.appendChild(child2);
-                    rest -= child2.clientHeight;
-                    console.log(rest,child2, container);
+    var page;
+    var rest;
+    var children;
+    var children2;
+    var child;
+    var child2;
+    var finalChild;
+    var container;
+    var fragment = document.createDocumentFragment();
+    var newPage;
+
+    for (let index = 0; index < pages.length; index++) {
+        page = pages[index];
+        if(page.clientHeight > 1123) {
+            rest = page.clientHeight - 1123;
+            children = page.childNodes;
+            for (let i = 1; i < children.length; i++) {
+                child = children[children.length - i]; //elements are checking from end
+                container = child.cloneNode(false);
+                children2 = concat(child);
+                console.log(children2);
+                for (let i2 = 1; i2 < children2.length; i2++) {
+                    console.log(i2);
+                    child2 = children2[children2.length - i2];
+                    if(rest <= child2.clientHeight) {
+                        container.appendChild(child2);
+                        rest -= child2.clientHeight;
+                        finalChild = container;
+                        break;
+                    } else {
+                        rest -= child2.clientHeight;
+                        container.appendChild(child2); //the order is the most important
+                    }
+                    // finalChild = container;
                 }
+                fragment.appendChild(finalChild);
             }
-            console.log(finalChild);
-            fragment.appendChild(finalChild);
+            if(pages[index+1]) {
+                pages[i+1].appendChild(fragment);
+            } else {
+                newPage = document.createElement('div');
+                newPage.className = 'page';
+                newPage.appendChild(fragment);
+                pages[0].parentNode.appendChild(newPage);
+            }
         }
     }
-}
+};
+
+split();
