@@ -32,9 +32,9 @@ https://github.com/AleksanderSkubala/split/blob/master/split.min.js
 ### Hierarchy
 Split.js has to know what pages you want to split. So div's that are considered as pages must have class 'page'. (Who would have thought? :D)
 
-##How does it work
+### How does it work
 
-If el.page is higher than 1123px the elements there are pulled on next page with the styles in the correct order. (If next page does't exists, script will make it.)
+If el.page is higher than 1123px the elements there are pulled on the next page with the styles and in the correct order. (If next page does't exists, script will make it.)
 
 Author
 ----
