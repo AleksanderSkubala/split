@@ -34,11 +34,13 @@ var split = function() {
 
                     rest -= child2.clientHeight;
                     container.appendChild(child2); //the order is the most important
-                    finalChild = container;
 
                     if(rest <= child2.clientHeight) break;
                 }
+                reverse(container);
+                finalChild = container;
                 fragment.appendChild(finalChild);
+
                 if(rest <= child2.clientHeight) break;
             }
             reverse(fragment);
