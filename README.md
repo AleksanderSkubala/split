@@ -17,7 +17,7 @@ You can import Split.js by:
  - raw github
  - download file
 
-Raw linl
+Raw link
 ```sh
 https://raw.githubusercontent.com/AleksanderSkubala/split/master/split.min.js
 ```
