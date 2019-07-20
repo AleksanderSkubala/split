@@ -2,7 +2,7 @@
 
 Split.js is a piece of code that will help you(i hope ;D) in splitting your pages(in HTML that are size of A4). It is helpful in e.g. generating pdf-s, preparing to print and other !!!
 
-# What you have to do
+### What you have to do
 
 If you want to use split.js you have to:
   - Import split.min.js in your html file
