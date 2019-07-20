@@ -11,4 +11,4 @@ var concat = function (node) {
         }
     }
     return final;
-}
+};

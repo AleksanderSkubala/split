@@ -27,10 +27,8 @@ var split = function() {
                 child = children[children.length - i]; //elements are checking from end
                 container = child.cloneNode(false);
                 children2 = concat(child);
-                console.log(children2);
                 for (let i2 = 1; i2 <= children2.length; i2++) {
                     child2 = children2[children2.length - i2];
-                    console.log(child2);
 
                     rest -= child2.clientHeight;
                     container.appendChild(child2); //the order is the most important
@@ -55,5 +53,3 @@ var split = function() {
         }
     }
 };
-
-split();
