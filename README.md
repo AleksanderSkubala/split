@@ -34,7 +34,7 @@ Split.js has to know what pages you want to split. So div's that are considered 
 
 ### How does it work
 
-If el.page is higher than 1123px the elements there are pulled on the next page with the styles and in the correct order. (If next page does't exists, script will make it.)
+If .page is higher than 1123px the elements there are pulled on the next page with the styles and in the correct order. (If next page does't exist, script will make it.)
 
 Author
 ----
@@ -42,7 +42,7 @@ Aleksander Skubała
 
 License
 ----
-MIT
+CC0
 
 
 **Free Software, Hell Yeah!**
