@@ -27,19 +27,21 @@ var split = function() {
                 child = children[children.length - i]; //elements are checking from end
                 container = child.cloneNode(false);
                 children2 = concat(child);
-                for (let i2 = 1; i2 <= children2.length; i2++) {
-                    child2 = children2[children2.length - i2];
+                if(children2.length > 0) {
+                    for (let i2 = 1; i2 <= children2.length; i2++) {
+                        child2 = children2[children2.length - i2];
 
-                    rest -= child2.clientHeight;
-                    container.appendChild(child2); //the order is the most important
+                        rest -= child2.offsetHeight ? child2.offsetHeight : 0
+                        container.appendChild(child2); //the order is the most important
+
+                        if(rest <= child2.offsetHeight) break;
+                    }
+                    reverse(container);
+                    finalChild = container;
+                    fragment.appendChild(finalChild);
 
                     if(rest <= child2.clientHeight) break;
                 }
-                reverse(container);
-                finalChild = container;
-                fragment.appendChild(finalChild);
-
-                if(rest <= child2.clientHeight) break;
             }
             reverse(fragment);
             if(pages[index+1]) {
