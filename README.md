@@ -42,7 +42,7 @@ Aleksander Skubała
 
 License
 ----
-CC0
+MIT
 
 
 **Free Software, Hell Yeah!**
